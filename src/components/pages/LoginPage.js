@@ -1,11 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import LoginForm from '../forms/LoginForm'
-const LoginPage = ()=>(
+
+import {Link} from 'react-router-dom';
+const LoginPage = () =>(
   <div>
   <h1>Login Page</h1>
-  <LoginForm/>
-  </div>
-);
+  <Link to="/">Home Page</Link>|
+  <Link to="/AboutPage">About Page</Link>
+  <p>This is a login page</p>
 
+  </div>
+
+);
 export default LoginPage;
