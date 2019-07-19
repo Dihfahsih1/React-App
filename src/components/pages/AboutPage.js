@@ -7,6 +7,7 @@ const AboutPage = () =>(
     <h1>About Page</h1>
     <Link to="/LoginPage">Login</Link>|
     <Link to="/">Home</Link>
+    <p>This is about page</p>
     </div>
 );
 export default AboutPage;
