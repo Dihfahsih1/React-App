@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "reactstrap";
+import { Button} from "reactstrap";
+import {Message } from "semantic-ui-react";
 import PropTypes from 'prop-types';
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import Validator from 'validator';
@@ -19,7 +20,12 @@ export default class LoginForm extends React.Component {
     const errors = this.validate(this.state.data);
     this.setState({errors});
     if(Object.keys(errors).length===0){
-      this.props.submit(this.state.data);
+      this.setState({loading:true});
+      this.props.submit(this.state.data)
+      .catch(err=>
+        this.setState({errors: err.response.data.errors, loading:false})
+    );
+
     }
   };
   validate = (data) => {
@@ -30,10 +36,16 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
-    const {data, errors} = this.state;
+    const {data, errors, loading} = this.state;
     return (
       <div className="card col-lg-6">
-      <AvForm onSubmit={this.onSubmit}>
+      <AvForm onSubmit={this.onSubmit} loading={loading}>
+      {errors.global && <Message negative>
+       <Message.Header>Something went Wrong</Message.Header>
+       <p>{errors.global}</p>
+       </Message>
+      }
+
         <AvField
           error={!!errors.email}
           name="email"
