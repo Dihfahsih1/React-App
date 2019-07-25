@@ -39,12 +39,13 @@ export default class LoginForm extends React.Component {
     const {data, errors, loading} = this.state;
     return (
       <div className="card col-lg-6">
-      <AvForm onSubmit={this.onSubmit} loading={loading}>
-      {errors.global && <Message negative>
+      <AvForm onSubmit={this.onSubmit}>
+      {errors.global && (
+        <Message negative>
        <Message.Header>Something went Wrong</Message.Header>
        <p>{errors.global}</p>
        </Message>
-      }
+     )}
 
         <AvField
           error={!!errors.email}
